@@ -8,15 +8,21 @@
    -------------------------------------------------------------------------- */
 const CONFIG = {
   instructorName: "Yogi",
-  coursePrice: "[COURSE PRICE]",              // e.g. "₹4,999"
-  originalPrice: "[ORIGINAL PRICE]",          // e.g. "₹7,999" — set to "" to hide the strikethrough
+  pricing: {
+    originalPrice: 1199,
+    offerPrice: 599,
+    offerActive: true,          // set to false after Diwali
+    offerLabel: "Diwali Offer",
+    offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
+  },
   enrollLink: "[ENROLL LINK]",                // e.g. "https://pages.razorpay.com/your-course"
   videoEmbedUrl: "[INTRO VIDEO EMBED URL]",   // e.g. "https://www.youtube.com/embed/VIDEO_ID"
   contactEmail: "yogi.indexoption@gmail.com",
   telegramChannel: "https://t.me/trade_index_option",   // free public Telegram channel
   whatsappChannel: "https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s", // free public WhatsApp channel
-  instagram: "[INSTAGRAM]",                   // e.g. "https://instagram.com/yourhandle"
-  youtube: "[YOUTUBE]"                        // e.g. "https://youtube.com/@yourchannel"
+  telegramBot: "https://t.me/Index_Option_bot",          // public bot for questions (anyone, enrolled or not)
+  instagram: "https://www.instagram.com/the.disciplined__trader/",   // Instagram profile
+  youtube: "https://www.youtube.com/@csPoint"   // YouTube channel
 };
 
 (function () {
@@ -61,6 +67,60 @@ const CONFIG = {
     });
   }
 
+  /* ---- 1b. Pricing — everything is generated from CONFIG.pricing -------- */
+  function applyPricing() {
+    const P = CONFIG.pricing;
+    const fmt = (n) => "₹" + Number(n).toLocaleString("en-IN");
+    let end = null;
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(P.offerEndDate || "");
+    if (m) end = new Date(+m[1], +m[2] - 1, +m[3], 23, 59, 59);
+    // Offer is active only if enabled, sensible, and not past its end date
+    const active = !!P.offerActive && P.offerPrice < P.originalPrice && !(end && Date.now() > end.getTime());
+    const current = active ? P.offerPrice : P.originalPrice;
+    const save = P.originalPrice - P.offerPrice;
+    const percent = Math.round((save / P.originalPrice) * 100);
+    const endText = end ? end.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
+    const vals = { current: fmt(current), offer: fmt(P.offerPrice), original: fmt(P.originalPrice), save: fmt(save), percent: String(percent), label: P.offerLabel };
+
+    $$("[data-price]").forEach((el) => { el.textContent = vals[el.dataset.price] || ""; });
+    $$("[data-offer-only]").forEach((el) => { el.hidden = !active; });
+    const valid = $("#price-valid");
+    if (valid) { valid.hidden = !(active && endText); valid.textContent = endText ? "Offer valid till " + endText : ""; }
+
+    const faq = $("#faq-fee");
+    if (faq) faq.textContent = active
+      ? "The course fee is " + fmt(P.originalPrice) + ". For " + P.offerLabel.replace(/\s*Offer$/i, "") + ", it's available at a special price of " + fmt(P.offerPrice) + " (" + percent + "% OFF)."
+      : "The course fee is " + fmt(P.originalPrice) + ".";
+
+    // Announcement bar: dismissible, closed state remembered for the session
+    const bar = $("#offer-bar");
+    let closed = false;
+    try { closed = sessionStorage.getItem("offerBarClosed") === "1"; } catch (e) {}
+    const showBar = !!bar && active && !closed;
+    if (bar) bar.hidden = !showBar;
+    document.documentElement.classList.toggle("has-bar", showBar);
+    const close = $("#offer-close");
+    if (close) close.addEventListener("click", () => {
+      try { sessionStorage.setItem("offerBarClosed", "1"); } catch (e) {}
+      bar.hidden = true;
+      document.documentElement.classList.remove("has-bar");
+    });
+
+    // Course structured data (SEO), built from the same CONFIG
+    if ($("#pricing")) {
+      const ld = document.createElement("script");
+      ld.type = "application/ld+json";
+      ld.textContent = JSON.stringify({
+        "@context": "https://schema.org", "@type": "Course",
+        name: "Index Option Buying Course",
+        description: "Learn index option buying in two focused videos: a complete trading setup plus discipline, risk and money management.",
+        provider: { "@type": "Organization", name: "Index Option" },
+        offers: { "@type": "Offer", price: current, priceCurrency: "INR", availability: "https://schema.org/InStock" }
+      });
+      document.head.appendChild(ld);
+    }
+  }
+
   /* ---- 2. Navbar: solid on scroll, mobile menu, active link ------------- */
   const navbar = $("#navbar");
   const hamburger = $("#hamburger");
@@ -80,11 +140,11 @@ const CONFIG = {
 
   // Active link based on the section crossing the upper-middle of the viewport
   const spySections = navLinks
-    .map((l) => $(l.getAttribute("href")))
+    .map((l) => (l.getAttribute("href").startsWith("#") ? $(l.getAttribute("href")) : null))
     .filter(Boolean);
   function updateActiveLink() {
     const line = window.innerHeight * 0.35;
-    let current = spySections[0];
+    let current = spySections[0] || null;
     spySections.forEach((s) => { if (s.getBoundingClientRect().top <= line) current = s; });
     navLinks.forEach((l) => {
       const on = current && l.getAttribute("href") === "#" + current.id;
@@ -103,11 +163,10 @@ const CONFIG = {
   function onScroll() {
     const y = window.scrollY;
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
+    if (progress) progress.style.transform = "scaleX(" + (max > 0 ? Math.min(y / max, 1) : 0) + ")";
     navbar.classList.toggle("is-scrolled", y > 20);
-    const pastHero = y > hero.offsetHeight - 120;
-    stickyCta.classList.toggle("is-visible", pastHero);
-    toTop.classList.toggle("is-visible", y > 600);
+    if (stickyCta && hero) stickyCta.classList.toggle("is-visible", y > hero.offsetHeight - 120);
+    if (toTop) toTop.classList.toggle("is-visible", y > 600);
     updateActiveLink();
     ticking = false;
   }
@@ -115,7 +174,7 @@ const CONFIG = {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
   }, { passive: true });
   window.addEventListener("resize", onScroll);
-  toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
+  if (toTop) toTop.addEventListener("click", () => window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" }));
 
   /* ---- 4. Reveal on scroll --------------------------------------------- */
   const revealEls = $$(".reveal");
@@ -170,7 +229,9 @@ const CONFIG = {
       // iframe is created only now (lazy) and removed on close so playback stops
       const iframe = document.createElement("iframe");
       const sep = CONFIG.videoEmbedUrl.includes("?") ? "&" : "?";
-      iframe.src = CONFIG.videoEmbedUrl + sep + "autoplay=1&rel=0";
+      // privacy-enhanced mode: youtube-nocookie.com avoids setting cookies until playback
+      const embed = CONFIG.videoEmbedUrl.replace("://www.youtube.com/embed/", "://www.youtube-nocookie.com/embed/");
+      iframe.src = embed + sep + "autoplay=1&rel=0";
       iframe.title = "Index Option intro video";
       iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
       iframe.allowFullscreen = true;
@@ -187,10 +248,10 @@ const CONFIG = {
     document.body.style.overflow = "";
     if (lastFocus) lastFocus.focus();
   }
-  openBtn.addEventListener("click", openModal);
-  $$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
+  if (openBtn && modal) openBtn.addEventListener("click", openModal);
+  if (modal) $$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => {
-    if (modal.hidden) return;
+    if (!modal || modal.hidden) return;
     if (e.key === "Escape") { closeModal(); return; }
     if (e.key === "Tab") {
       const items = focusables();
@@ -202,9 +263,24 @@ const CONFIG = {
   });
 
   /* ---- 7. Footer year --------------------------------------------------- */
-  $("#year").textContent = new Date().getFullYear();
+  const yearEl = $("#year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---- 8. Legal pages: highlight the active "On this page" link --------- */
+  const tocLinks = $$(".toc a");
+  if (tocLinks.length) {
+    const targets = tocLinks.map((a) => $(a.getAttribute("href")));
+    const setToc = () => {
+      let cur = 0;
+      targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top <= window.innerHeight * 0.3) cur = i; });
+      tocLinks.forEach((a, i) => { a.classList.toggle("is-active", i === cur); if (i === cur) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+    };
+    window.addEventListener("scroll", setToc, { passive: true });
+    setToc();
+  }
 
   /* ---- init ------------------------------------------------------------- */
   applyConfig();
+  applyPricing();
   onScroll();
 })();

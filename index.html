@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Index Option — The Disciplined Trader | Index Option Buying Course</title>
-  <meta name="description" content="Learn index option buying step by step — candlestick patterns, support & resistance, a complete trading setup, and risk & money management. Beginner friendly, with private group access. Discipline Today | Freedom Tomorrow.">
+  <meta name="description" content="Learn index option buying in two focused videos: trading setup, discipline, risk &amp; money management. For anyone who wants to become an independent trader.">
   <meta name="theme-color" content="#0B0F19">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Index Option — The Disciplined Trader | Index Option Buying Course">
-  <meta property="og:description" content="Learn index option buying step by step — candlestick patterns, support & resistance, a complete trading setup, and risk & money management.">
+  <meta property="og:description" content="Learn index option buying in two focused videos: trading setup, discipline, risk &amp; money management. For anyone who wants to become an independent trader.">
   <meta property="og:site_name" content="Index Option">
   <!-- EDIT: social crawlers need absolute URLs. Replace https://your-domain.com with your real domain. -->
   <meta property="og:image" content="https://your-domain.com/images/logo.png">
@@ -18,7 +18,7 @@
   <!-- <meta property="og:url" content="https://your-domain.com/"> -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Index Option — The Disciplined Trader | Index Option Buying Course">
-  <meta name="twitter:description" content="Learn index option buying step by step with a structured setup and disciplined risk management.">
+  <meta name="twitter:description" content="Learn index option buying in two focused videos: trading setup, discipline, risk &amp; money management. For anyone who wants to become an independent trader.">
   <meta name="twitter:image" content="https://your-domain.com/images/logo.png">
 
   <!-- Favicon -->
@@ -48,6 +48,7 @@
     <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7.1L4 20l1-4.6A8 8 0 1 1 21 12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
     <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 4 12 2.5-6H21" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.6 2.2c-.7.4-1.1.9-1.1 1.8M12 17v.1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 11v5.5M12 7.6v.1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
     <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor"/></symbol>
@@ -64,6 +65,15 @@
 
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- Offer bar: shown by JS only while CONFIG.pricing offer is active -->
+<div class="offer-bar" id="offer-bar" hidden>
+  <a class="offer-bar__link" href="#pricing">
+    <span class="offer-bar__full">🪔 <span data-price="label"></span>: Get the course at <b data-price="offer"></b> (<span data-price="percent"></span>% OFF) — Enroll Now →</span>
+    <span class="offer-bar__short">🪔 <span data-price="label"></span>: <b data-price="offer"></b> (<span data-price="percent"></span>% OFF) →</span>
+  </a>
+  <button type="button" class="offer-bar__close" id="offer-close" aria-label="Dismiss offer">×</button>
+</div>
 
 <!-- ===================== 1. NAVBAR ===================== -->
 <header class="navbar" id="navbar">
@@ -83,7 +93,7 @@
       <li class="navbar__cta-mobile"><a href="#pricing" data-enroll class="btn btn--primary btn--block">Enroll Now</a></li>
     </ul>
 
-    <a href="#pricing" data-enroll class="btn btn--primary navbar__cta">Enroll Now</a>
+    <a href="#pricing" data-enroll class="btn btn--primary btn--sm navbar__cta">Enroll Now</a>
 
     <button class="hamburger" id="hamburger" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -98,17 +108,18 @@
   <div class="hero__glow" aria-hidden="true"></div>
   <div class="container hero__grid">
     <div class="hero__text">
-      <span class="badge badge--tagline reveal">Discipline Today | Freedom Tomorrow</span>
+      <span class="badge badge--tagline reveal">The Disciplined Trader</span>
       <h1 class="reveal">Master Index Option Buying — <span class="text-accent">The Right Way</span></h1>
-      <p class="hero__sub reveal">A complete, step-by-step course designed so that even if you're a complete beginner with little or no trading knowledge, you can learn to build a proper trading setup and trade with discipline.</p>
+      <p class="hero__sub reveal">A complete, step-by-step course designed so that even if you're a complete beginner with little or no trading knowledge, you can learn to build a proper trading setup and trade with discipline. Built for anyone who wants to become an <strong class="em">independent trader</strong>.</p>
       <div class="hero__actions reveal">
         <a href="#pricing" data-enroll class="btn btn--primary btn--lg">Enroll Now <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <button type="button" class="btn btn--ghost btn--lg" id="open-video">
           <svg class="icon" aria-hidden="true"><use href="#i-play"/></svg> Watch Intro Video
         </button>
       </div>
-      <ul class="highlights reveal">
-        <li><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>4 Structured Modules</li>
+      <p class="hero__offer reveal" data-offer-only hidden><span data-price="label"></span>: <b data-price="offer"></b> <s data-price="original"></s></p>
+      <ul class="stats reveal">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg>2 Focused Video Lessons</li>
         <li><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg>Complete Trading Setup</li>
         <li><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg>Risk &amp; Money Management</li>
         <li><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg>Private Telegram Group</li>
@@ -117,10 +128,14 @@
 
     <!-- Animated candlestick chart (pure SVG; animation in CSS) -->
     <div class="hero__visual reveal" aria-hidden="true">
-      <svg class="chart" viewBox="0 0 520 380" role="img" focusable="false">
+      <div class="terminal__bar"><span class="terminal__title">NIFTY 50 · 15m</span><span class="terminal__tag">Live chart (illustration)</span></div>
+      <svg class="chart" viewBox="0 0 580 380" role="img" focusable="false">
         <g class="chart__grid" stroke="currentColor" stroke-width="1">
-          <path d="M0 60H520M0 130H520M0 200H520M0 270H520M0 340H520"/>
+          <path d="M0 60H580M0 130H580M0 200H580M0 270H580M0 340H580"/>
           <path d="M60 0V380M160 0V380M260 0V380M360 0V380M460 0V380"/>
+        </g>
+        <g class="chart__axis">
+          <text x="574" y="64">24,600</text><text x="574" y="134">24,500</text><text x="574" y="204">24,400</text><text x="574" y="274">24,300</text><text x="574" y="344">24,200</text>
         </g>
         <!-- resistance / support -->
         <g class="chart__level chart__level--res">
@@ -157,7 +172,8 @@
       <p class="eyebrow reveal">Welcome</p>
       <h2 class="reveal">Welcome to the Index Option Buying Course</h2>
       <p class="reveal">I've designed this course so that even if you're a beginner — someone who doesn't have much trading knowledge — it will be genuinely helpful for you.</p>
-      <p class="reveal">The course is divided into four important parts. Across these parts, we'll learn step by step how to build a proper trading setup and how to trade while following your trading rules.</p>
+      <p class="reveal">The course is divided into <strong>two focused videos</strong>. In the first, you'll learn the complete trading setup — including the candlestick patterns and support &amp; resistance levels it's built on. In the second, you'll learn the trading rules, discipline, and risk &amp; money management that turn a good setup into consistent trading.</p>
+      <p class="reveal">This program is especially beneficial for anyone who wants to become an <strong>independent trader</strong> — someone who can read the chart, plan their own trades, and manage risk with confidence, without depending on tips or calls.</p>
     </div>
 
     <!-- Instructor card. EDIT: name in CONFIG (js/main.js); photo at images/Yogi.jpg -->
@@ -167,8 +183,7 @@
       </div>
       <p class="instructor__name" data-config-text="instructorName">Yogi</p>
       <p class="instructor__role">Index Options Trader &amp; Educator</p>
-      <p class="instructor__bio">I share live market analysis with my students in our private group and help them build a disciplined, rule-based trading approach.</p>
-      <a class="instructor__link" href="https://yogendrasingh.info" target="_blank" rel="noopener noreferrer">Visit my website <span aria-hidden="true">→</span></a>
+      <p class="instructor__bio">I share market analysis with the members of our private group whenever I can during market hours, and help them build a disciplined, rule-based trading approach.</p>
     </aside>
   </div>
 </section>
@@ -178,88 +193,53 @@
   <div class="container">
     <header class="section__head">
       <p class="eyebrow reveal">Curriculum</p>
-      <h2 class="reveal">4 Parts. One Complete Trading System.</h2>
-      <p class="section__sub reveal">Every part builds on the previous one, taking you from chart basics to disciplined execution.</p>
+      <h2 class="reveal">2 Videos. One Complete Trading System.</h2>
+      <p class="section__sub reveal">First learn the setup, then learn how to trade it with discipline.</p>
     </header>
 
-    <ol class="timeline">
-      <li class="step reveal">
-        <span class="step__marker" aria-hidden="true">1</span>
-        <article class="card module">
-          <div class="module__top">
-            <span class="module__num">Part 01</span>
-            <span class="module__icon"><svg class="icon" aria-hidden="true"><use href="#i-candles"/></svg></span>
-          </div>
-          <h3>Candlestick Patterns</h3>
-          <p>Learn which candlestick patterns actually matter for our trading setup and which ones you should focus on.</p>
-          <ul class="checklist">
-            <li>Understanding candlestick structure</li>
-            <li>The patterns that are useful for our setup</li>
+    <div class="videos">
+      <article class="card vcard reveal">
+        <div class="vcard__top">
+          <span class="vcard__num">Video 01</span>
+          <span class="vcard__icon"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
+        </div>
+        <h3>The Complete Trading Setup</h3>
+        <p>Learn the full setup step by step, starting with the chart basics it's built on.</p>
+        <ul class="checklist">
+            <li>Candlestick patterns that matter for our setup</li>
             <li>Which patterns to focus on, and which to ignore</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="step reveal">
-        <span class="step__marker" aria-hidden="true">2</span>
-        <article class="card module">
-          <div class="module__top">
-            <span class="module__num">Part 02</span>
-            <span class="module__icon"><svg class="icon" aria-hidden="true"><use href="#i-levels"/></svg></span>
-          </div>
-          <h3>Support &amp; Resistance</h3>
-          <p>A detailed look at how to correctly identify support and resistance levels on a chart, and which levels to use in your setup.</p>
-          <ul class="checklist">
-            <li>Identifying accurate support and resistance levels</li>
-            <li>Spotting strong vs. weak levels</li>
-            <li>Choosing the right levels for your trading setup</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="step reveal">
-        <span class="step__marker" aria-hidden="true">3</span>
-        <article class="card module">
-          <div class="module__top">
-            <span class="module__num">Part 03</span>
-            <span class="module__icon"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></span>
-          </div>
-          <h3>The Trading Setup</h3>
-          <p>Understand the complete trading setup in detail: where to enter, where to place your stop-loss, and how to decide your target.</p>
-          <ul class="checklist">
+            <li>Identifying accurate support &amp; resistance levels</li>
+            <li>Choosing the right levels for the setup</li>
             <li>Planning your trade entry</li>
-            <li>Setting the right stop-loss level</li>
+            <li>Setting the right stop-loss</li>
             <li>Deciding your targets</li>
-            <li>Using a trailing stop-loss to grow your profits</li>
-            <li>Managing a trade to achieve bigger targets</li>
-          </ul>
-        </article>
-      </li>
-
-      <li class="step step--key reveal">
-        <span class="step__marker" aria-hidden="true">4</span>
-        <article class="card module module--key">
-          <div class="module__top">
-            <span class="module__num">Part 04</span>
-            <span class="badge badge--gold">Most Important</span>
-            <span class="module__icon"><svg class="icon" aria-hidden="true"><use href="#i-scale"/></svg></span>
-          </div>
-          <h3>Trading Rules, Risk &amp; Money Management</h3>
-          <p>In trading, a good setup alone isn't enough. To become a successful trader, you must follow your trading rules, maintain discipline, and focus on risk management.</p>
-          <ul class="checklist">
+            <li>Using a trailing stop-loss to grow profits</li>
+            <li>Managing a trade for bigger targets</li>
+        </ul>
+      </article>
+      <span class="videos__arrow" aria-hidden="true"></span>
+      <article class="card vcard vcard--key reveal">
+        <div class="vcard__top">
+          <span class="vcard__num">Video 02</span>
+            <span class="badge badge--key">Most Important</span>
+          <span class="vcard__icon"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
+        </div>
+        <h3>Discipline, Risk &amp; Money Management</h3>
+        <p>In trading, a good setup alone isn't enough. To become a successful trader, you must follow your rules, maintain discipline, and manage risk.</p>
+        <ul class="checklist">
             <li>Trading rules and why they matter</li>
+            <li>Maintaining discipline</li>
             <li>Risk management: how much to risk per trade</li>
-            <li>Money management: protecting your trading capital</li>
+            <li>Money management: protecting your capital</li>
             <li>Controlling emotions after a loss</li>
-            <li>Trading with consistency and discipline</li>
-          </ul>
-        </article>
-      </li>
-    </ol>
+            <li>Trading with consistency</li>
+        </ul>
+      </article>
+    </div>
   </div>
 </section>
 
-<!-- ===================== 5. WHY PART 4 MATTERS ===================== -->
+<!-- ===================== 5. WHY VIDEO 2 MATTERS ===================== -->
 <section class="band" aria-labelledby="band-title">
   <div class="container band__inner reveal">
     <svg class="band__mark" aria-hidden="true" viewBox="0 0 24 24"><path d="M4 18v-6a6 6 0 0 1 6-6M14 18v-6a6 6 0 0 1 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -277,22 +257,27 @@
     <div class="community__text">
       <p class="badge badge--pill reveal"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>Private Telegram Group</p>
       <h2 class="reveal">Join "The Disciplined Trader" — Our Private Telegram Group</h2>
-      <p class="reveal">Once you enroll, you get entry into <strong>The Disciplined Trader</strong>, our private Telegram group. Here I share live market analysis during market hours, and if you have any doubt, you can ask it directly in the group.</p>
+      <p class="reveal">Once you enroll, you get entry into <strong>The Disciplined Trader</strong>, our private Telegram group. I share market analysis and trade views in the group whenever I can during market hours.</p>
+      <p class="reveal">I'm a working professional, so there may be times when I'm not available during the live market — but <strong>every question you ask will always get a reply.</strong></p>
 
       <div class="features">
         <article class="card feature reveal">
           <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-pulse"/></svg></span>
-          <div><h3>Live Market Analysis</h3><p>Real-time Nifty &amp; Bank Nifty analysis shared in the group during live market hours.</p></div>
+          <div><h3>Market Analysis</h3><p>Market analysis and trade views shared in the group, during market hours whenever possible.</p></div>
         </article>
         <article class="card feature reveal">
           <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-help"/></svg></span>
-          <div><h3>Doubt Solving</h3><p>Ask your questions directly in the group and get clear answers.</p></div>
+          <div><h3>Every Doubt Answered</h3><p>I may not always be online during market hours, but I always reply to your questions.</p></div>
         </article>
         <article class="card feature reveal">
           <span class="feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span>
           <div><h3>Disciplined Community</h3><p>Learn alongside traders who follow rules, manage risk, and stay disciplined.</p></div>
         </article>
       </div>
+      <aside class="info-note reveal" aria-label="Availability note">
+        <svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>
+        <p><strong>A note from Yogi:</strong> I'm a working professional, so I may not be available during every market session. But no question goes unanswered. I personally reply to all your doubts.</p>
+      </aside>
       <p class="community__note reveal">Group access link is shared after successful enrollment.</p>
     </div>
 
@@ -336,7 +321,14 @@
         <a class="btn channel__btn" href="https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s" data-config-link="whatsappChannel" target="_blank" rel="noopener noreferrer">Follow on WhatsApp</a>
       </article>
     </div>
-    <p class="channels__note reveal">Free channels are public. Live market analysis and doubt-solving are available only in the private group for enrolled students.</p>
+    <div class="follow reveal">
+      <span class="follow__label">Also follow on</span>
+      <div class="follow__links">
+        <a class="follow__pill follow__pill--ig" href="https://www.instagram.com/the.disciplined__trader/" data-config-link="instagram" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>@the.disciplined__trader</a>
+        <a class="follow__pill follow__pill--yt" href="https://www.youtube.com/@csPoint" data-config-link="youtube" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg>@csPoint</a>
+      </div>
+    </div>
+    <p class="channels__note reveal">Free channels are public. Views shared there are for educational purposes only and are not buy/sell recommendations. I am not a SEBI-registered analyst.</p>
   </div>
 </section>
 
@@ -346,11 +338,13 @@
     <header class="section__head">
       <p class="eyebrow reveal">Is this for you?</p>
       <h2 class="reveal">Who This Course Is For</h2>
+      <p class="section__sub reveal">Be honest about what you're looking for, so the course is the right fit.</p>
     </header>
     <div class="compare">
       <article class="card compare__col compare__col--yes reveal">
         <h3>This course is for you if…</h3>
         <ul>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>You want to become an independent trader who can take your own trading decisions</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>You're a beginner who wants to learn index option buying from scratch</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>You want a clear, rule-based trading setup</li>
           <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>You want to learn proper risk and money management</li>
@@ -370,38 +364,46 @@
 </section>
 
 <!-- ===================== 8. PRICING / WHAT YOU GET ===================== -->
-<section class="section" id="pricing">
+<section class="section section--alt" id="pricing">
   <div class="container">
     <header class="section__head">
       <p class="eyebrow reveal">What You Get</p>
       <h2 class="reveal">Everything you need in one course</h2>
+      <p class="section__sub reveal">The full course plus access to our private Telegram group.</p>
     </header>
     <div class="price-card reveal">
+      <p class="price-badge" data-offer-only hidden>🪔 <span data-price="label"></span>: <span data-price="percent"></span>% OFF</p>
       <h3>Index Option Buying Course</h3>
-      <!-- EDIT: prices live in CONFIG (js/main.js). Set originalPrice to "" to hide the strikethrough. -->
+      <!-- Prices are generated from CONFIG.pricing in js/main.js — do not hard-code them here. -->
       <p class="price">
-        <s class="price__old" data-config-text="originalPrice" aria-label="Original price">[ORIGINAL PRICE]</s>
-        <span class="price__now" data-config-text="coursePrice">[COURSE PRICE]</span>
+        <span class="price__now" data-price="current"></span>
+        <s class="price__old" data-offer-only hidden data-price="original" aria-label="Original price"></s>
       </p>
+      <p class="price-save" data-offer-only hidden>You save <span data-price="save"></span></p>
+      <p class="price-valid" id="price-valid" hidden></p>
       <ul class="checklist checklist--lg">
-        <li>All 4 course modules</li>
-        <li>Complete trading setup: entry, stop-loss, target &amp; trailing SL</li>
-        <li>Risk management &amp; money management framework</li>
-        <li>Access to 'The Disciplined Trader' private Telegram group with live market analysis</li>
+        <li><strong>Video 1:</strong> Complete trading setup: candlesticks, support &amp; resistance, entry, stop-loss, target &amp; trailing SL</li>
+        <li><strong>Video 2:</strong> Trading rules, discipline, risk &amp; money management</li>
+        <li>Access to 'The Disciplined Trader' private Telegram group with market analysis (whenever possible during market hours)</li>
         <li>Doubt-solving support</li>
       </ul>
-      <a href="#pricing" data-enroll class="btn btn--primary btn--lg btn--block">Enroll Now</a>
+      <a href="#pricing" data-enroll class="btn btn--primary btn--lg btn--block">Enroll Now at <span data-price="current"></span></a>
       <p class="price-card__note">Get access to The Disciplined Trader Telegram group after enrollment.</p>
+      <p class="price-card__note">Questions before enrolling? Ask on Telegram → <a class="text-link" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer">@Index_Option_bot</a></p>
+      <p class="price-card__note">By enrolling, you agree to our <a class="text-link" href="terms.html">Terms &amp; Conditions</a> and <a class="text-link" href="privacy.html">Privacy Policy</a>.</p>
+      <p class="price-card__note">Secure enrollment via Cosmofeed.</p>
     </div>
   </div>
 </section>
 
 <!-- ===================== 9. FAQ ===================== -->
-<section class="section section--alt" id="faq">
-  <div class="container container--narrow">
-    <header class="section__head">
+<section class="section" id="faq">
+  <div class="container faq">
+    <header class="faq__head">
       <p class="eyebrow reveal">FAQ</p>
       <h2 class="reveal">Frequently Asked Questions</h2>
+      <p class="section__sub reveal"><strong>Still have questions?</strong><br>Message me on Telegram at <a class="text-link" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer">@Index_Option_bot</a> or email <a class="text-link" href="mailto:yogi.indexoption@gmail.com">yogi.indexoption@gmail.com</a>.</p>
+      <a class="btn btn--ghost faq__btn reveal" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>Ask on Telegram</a>
     </header>
     <div class="accordion reveal" id="accordion">
       <div class="acc-item">
@@ -410,27 +412,39 @@
       </div>
       <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-2" aria-expanded="false" aria-controls="acc-panel-2">What does the course cover?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-        <div class="acc-panel" id="acc-panel-2" role="region" aria-labelledby="acc-btn-2"><div><p>Four parts: candlestick patterns, support &amp; resistance, a complete trading setup (entry, stop-loss, target, trailing stop-loss), and trading rules with risk and money management.</p></div></div>
+        <div class="acc-panel" id="acc-panel-2" role="region" aria-labelledby="acc-btn-2"><div><p>The course has two videos. Video 1 covers the complete trading setup, including candlestick patterns, support &amp; resistance, entry, stop-loss, target, and trailing stop-loss. Video 2 covers trading rules, discipline, risk management, and money management.</p></div></div>
+      </div>
+      <div class="acc-item">
+        <h3><button type="button" class="acc-btn" id="acc-btn-fee" aria-expanded="false" aria-controls="acc-panel-fee">What is the course fee?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+        <div class="acc-panel" id="acc-panel-fee" role="region" aria-labelledby="acc-btn-fee"><div><p id="faq-fee"></p></div></div>
       </div>
       <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-3" aria-expanded="false" aria-controls="acc-panel-3">What do I get after enrolling?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-        <div class="acc-panel" id="acc-panel-3" role="region" aria-labelledby="acc-btn-3"><div><p>Full course access plus entry into <strong>The Disciplined Trader</strong>, our private Telegram group, where I share live market analysis and you can ask your doubts.</p></div></div>
+        <div class="acc-panel" id="acc-panel-3" role="region" aria-labelledby="acc-btn-3"><div><p>Full course access plus entry into <strong>The Disciplined Trader</strong>, our private Telegram group, where I share market analysis whenever I can during market hours and you can ask your doubts.</p></div></div>
       </div>
       <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-4" aria-expanded="false" aria-controls="acc-panel-4">Can I ask questions if I get stuck?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
         <div class="acc-panel" id="acc-panel-4" role="region" aria-labelledby="acc-btn-4"><div><p>Yes. Ask your doubts directly in The Disciplined Trader Telegram group.</p></div></div>
       </div>
       <div class="acc-item">
+        <h3><button type="button" class="acc-btn" id="acc-btn-new" aria-expanded="false" aria-controls="acc-panel-new">Will you be available during market hours?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+        <div class="acc-panel" id="acc-panel-new" role="region" aria-labelledby="acc-btn-new"><div><p>I'm a working professional, so I may not be available during every market session. I share analysis in the group whenever I can, and I always reply to every question, even if it's a little later.</p></div></div>
+      </div>
+      <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-5" aria-expanded="false" aria-controls="acc-panel-5">Does this course guarantee profits?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
         <div class="acc-panel" id="acc-panel-5" role="region" aria-labelledby="acc-btn-5"><div><p>No. Trading involves risk, and no course can guarantee profits. This course focuses on a structured setup, discipline, and risk management to help you trade more responsibly.</p></div></div>
       </div>
       <div class="acc-item">
+        <h3><button type="button" class="acc-btn" id="acc-btn-pre" aria-expanded="false" aria-controls="acc-panel-pre">I have a question before enrolling. Where can I ask?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
+        <div class="acc-panel" id="acc-panel-pre" role="region" aria-labelledby="acc-btn-pre"><div><p>Send your question to <a class="text-link" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer">@Index_Option_bot</a> on Telegram. I'll reply as soon as I can.</p></div></div>
+      </div>
+      <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-6" aria-expanded="false" aria-controls="acc-panel-6">How do I enroll?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-        <div class="acc-panel" id="acc-panel-6" role="region" aria-labelledby="acc-btn-6"><div><p>Click any "Enroll Now" button on this page and complete the enrollment process.</p></div></div>
+        <div class="acc-panel" id="acc-panel-6" role="region" aria-labelledby="acc-btn-6"><div><p>Click any 'Enroll Now' button on this page. You'll be taken to our secure Cosmofeed page to complete your enrollment.</p></div></div>
       </div>
       <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-7" aria-expanded="false" aria-controls="acc-panel-7">How can I contact you?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
-        <div class="acc-panel" id="acc-panel-7" role="region" aria-labelledby="acc-btn-7"><div><p>You can email me at <a class="text-link" href="mailto:yogi.indexoption@gmail.com">yogi.indexoption@gmail.com</a>, or ask your questions directly in The Disciplined Trader Telegram group after enrolling.</p></div></div>
+        <div class="acc-panel" id="acc-panel-7" role="region" aria-labelledby="acc-btn-7"><div><p>You can message me on Telegram at <a class="text-link" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer">@Index_Option_bot</a>, email me at <a class="text-link" href="mailto:yogi.indexoption@gmail.com">yogi.indexoption@gmail.com</a>, or, if you're enrolled, ask directly in The Disciplined Trader group.</p></div></div>
       </div>
       <div class="acc-item">
         <h3><button type="button" class="acc-btn" id="acc-btn-8" aria-expanded="false" aria-controls="acc-panel-8">Which app do I need for the private group?<svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button></h3>
@@ -445,7 +459,7 @@
   <div class="container cta-band__inner reveal">
     <h2>Discipline Today. Freedom Tomorrow.</h2>
     <p>Learn the setup. Follow the rules. Manage the risk. Start your journey with the Index Option Buying Course.</p>
-    <a href="#pricing" data-enroll class="btn btn--primary btn--lg">Enroll Now <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a href="#pricing" data-enroll class="btn btn--primary btn--lg">Enroll Now at <span data-price="current"></span> <svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
   </div>
 </section>
 
@@ -458,8 +472,13 @@
       <div class="footer__brand">
         <a href="#home" class="footer__brand-link" aria-label="Index Option — home"><img src="images/logo.png" alt="" width="48" height="48" loading="lazy"><span>Index Option</span></a>
         <p class="footer__tag">The Disciplined Trader</p>
-        <p class="footer__slogan">Discipline Today | Freedom Tomorrow</p>
         <p>Index Option — Learn index option buying with a structured setup and disciplined risk management.</p>
+        <div class="social">
+          <a class="social--ig" href="https://www.instagram.com/the.disciplined__trader/" data-config-link="instagram" aria-label="Follow us on Instagram" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
+          <a class="social--yt" href="https://www.youtube.com/@csPoint" data-config-link="youtube" aria-label="Subscribe on YouTube" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a>
+          <a class="social--tg" href="https://t.me/trade_index_option" data-config-link="telegramChannel" aria-label="Join our Telegram channel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg></a>
+          <a class="social--wa" href="https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s" data-config-link="whatsappChannel" aria-label="Follow our WhatsApp channel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
+        </div>
       </div>
 
       <nav class="footer__col" aria-label="Footer navigation">
@@ -477,34 +496,37 @@
       <div class="footer__col">
         <h4>Contact</h4>
         <!-- EDIT: email & social links live in CONFIG (js/main.js) -->
+        <a class="footer__mail" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>@Index_Option_bot</a><br>
         <a href="mailto:yogi.indexoption@gmail.com" class="footer__mail" data-config-mail="contactEmail"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span data-config-text="contactEmail">yogi.indexoption@gmail.com</span></a>
-        <p class="footer__web"><strong>Website:</strong> <a href="https://yogendrasingh.info" target="_blank" rel="noopener noreferrer">yogendrasingh.info</a></p>
         <p class="footer__web">Private community: The Disciplined Trader (Telegram)</p>
-        <div class="social">
-          <a href="#" data-config-link="instagram" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg></a>
-          <a href="#" data-config-link="youtube" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg></a>
-          <a href="https://t.me/trade_index_option" data-config-link="telegramChannel" aria-label="Join our Telegram channel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg></a>
-          <a href="https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s" data-config-link="whatsappChannel" aria-label="Follow our WhatsApp channel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg></a>
-          </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Free Channels</h4>
+        <ul>
+          <li><a href="https://t.me/trade_index_option" data-config-link="telegramChannel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>Telegram Channel</a></li>
+          <li><a href="https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s" data-config-link="whatsappChannel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-whatsapp"/></svg>WhatsApp Channel</a></li>
+          <li><a href="https://www.instagram.com/the.disciplined__trader/" data-config-link="instagram" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>Instagram</a></li>
+          <li><a href="https://www.youtube.com/@csPoint" data-config-link="youtube" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-youtube"/></svg>YouTube</a></li>
+        </ul>
       </div>
     </div>
 
-    <p class="disclaimer"><strong>Disclaimer:</strong> Trading in options and derivatives involves substantial risk and may not be suitable for all investors. This course is for educational purposes only and does not constitute investment advice, a recommendation, or a solicitation to buy or sell any securities. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any investment decisions. You are solely responsible for your trading decisions. Trade ideas and stock views shared on our free Telegram and WhatsApp channels are for educational purposes only and are not buy/sell recommendations.</p>
+    <p class="disclaimer"><strong>Disclaimer:</strong> <strong class="disclaimer__lead">I am not a SEBI-registered Investment Advisor or Research Analyst.</strong> Trading in options and derivatives involves substantial risk and may not be suitable for all investors. This course is for educational purposes only and does not constitute investment advice, a recommendation, or a solicitation to buy or sell any securities. Trade ideas and stock views shared on our free Telegram and WhatsApp channels are for educational purposes only and are not buy/sell recommendations. Past performance is not indicative of future results. Please consult a SEBI-registered investment advisor before making any investment decisions. You are solely responsible for your trading decisions.</p>
 
     <div class="footer__bottom">
       <p>© <span id="year">2026</span> Index Option by Yogi. All rights reserved.</p>
-      <!-- EDIT: replace the # hrefs with your policy page URLs -->
       <ul>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms &amp; Conditions</a></li>
-        <li><a href="#">Refund Policy</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms &amp; Conditions</a></li>
       </ul>
     </div>
   </div>
 </footer>
 
 <!-- Floating UI -->
-<div class="sticky-cta" id="sticky-cta"><a href="#pricing" data-enroll class="btn btn--primary btn--block">Enroll Now</a></div>
+<div class="sticky-cta" id="sticky-cta"><p class="sticky-cta__price"><b data-price="current"></b> <s data-offer-only hidden data-price="original"></s></p><a href="#pricing" data-enroll class="btn btn--primary">Enroll Now</a></div>
+<a class="ask-btn" href="https://t.me/Index_Option_bot" data-config-link="telegramBot" target="_blank" rel="noopener noreferrer" aria-label="Ask a question on Telegram"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg><span class="ask-btn__label" aria-hidden="true">Ask on Telegram</span></a>
 <button type="button" class="to-top" id="to-top" aria-label="Back to top"><svg class="icon" aria-hidden="true"><use href="#i-up"/></svg></button>
 
 <!-- Video modal (iframe is created only when opened) -->
