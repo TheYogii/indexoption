@@ -201,8 +201,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .instructor__photo { width: 128px; height: 128px; margin: 0 auto var(--sp-4); border-radius: 50%; overflow: hidden; background: var(--surface-2); border: 2px solid rgba(22,199,132,.5); }
 .instructor__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 .instructor__name { font-family: var(--font-head); font-weight: 600; font-size: 1.25rem; color: var(--text); margin: 0; }
-.instructor__role { color: var(--accent); font-size: var(--fs-sm); font-weight: 500; margin: .25rem 0 var(--sp-3); }
-.instructor__bio { color: var(--text-muted); font-size: .95rem; margin-bottom: var(--sp-3); }
+.instructor__role { color: var(--accent); font-size: var(--fs-sm); font-weight: 500; margin: .25rem 0 var(--sp-4); }
+.instructor__bio { max-width: 320px; margin: 0 auto var(--sp-4); color: var(--text-muted); font-size: .95rem; }
+.instructor__bio strong { color: var(--text); font-weight: 600; }
+.instructor__btn { max-width: 100%; padding: 0 16px; font-size: .9rem; }
+.instructor__btn .icon { color: #229ED9; flex: 0 0 auto; }
+.instructor__disclaimer { max-width: 320px; margin: var(--sp-4) auto 0; font-size: 13px; line-height: 1.5; color: var(--text-muted); opacity: .85; }
 @media (min-width: 768px) { .instructor__photo { width: 156px; height: 156px; } }
 
 /* 8. CURRICULUM ------------------------------------------------------------ */
