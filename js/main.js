@@ -15,7 +15,7 @@ const CONFIG = {
     offerLabel: "Diwali Offer",
     offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
   },
-  enrollLink: "[ENROLL LINK]",                // e.g. "https://pages.razorpay.com/your-course"
+  enrollLink: "https://superprofile.bio/course/index-option",   // Superprofile checkout
   introVideoId: "1wBa1sUbl30",   // YouTube video ID — the embed/thumbnail URLs are built from this
   contactEmail: "yogi.indexoption@gmail.com",
   telegramChannel: "https://t.me/trade_index_option",   // free public Telegram channel
@@ -46,12 +46,12 @@ CONFIG.introVideoEmbed = CONFIG.introVideoId ? "https://www.youtube-nocookie.com
       if (val != null) el.textContent = val;
     });
 
-    // Enroll buttons: real link opens in a new tab; placeholder falls back to the pricing section
+    // Enroll buttons: open the checkout in the same tab; placeholder falls back to the pricing section
     $$("[data-enroll]").forEach((a) => {
       if (isPlaceholder(CONFIG.enrollLink)) return; // keep default in-page href
       a.href = CONFIG.enrollLink;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
+      a.removeAttribute("target");
+      a.removeAttribute("rel");
     });
 
     // Social links: only link when a real URL is set
@@ -250,21 +250,6 @@ CONFIG.introVideoEmbed = CONFIG.introVideoId ? "https://www.youtube-nocookie.com
     if (lastFocus) lastFocus.focus();
   }
   if (openBtn && modal) openBtn.addEventListener("click", openModal);
-  const previewBtn = $("#video-preview");
-  if (previewBtn && modal) previewBtn.addEventListener("click", openModal);
-  // Thumbnail: fall back to hqdefault.jpg if maxresdefault.jpg doesn't exist
-  const previewImg = $("#video-preview-img");
-  if (previewImg && CONFIG.introVideoId) {
-    const base = "https://i.ytimg.com/vi/" + CONFIG.introVideoId + "/";
-    previewImg.addEventListener("error", function onErr() {
-      previewImg.removeEventListener("error", onErr);
-      previewImg.src = base + "hqdefault.jpg";
-    });
-    // maxresdefault returns a 120px placeholder (not an error) on some videos
-    previewImg.addEventListener("load", () => {
-      if (previewImg.naturalWidth && previewImg.naturalWidth <= 120 && !previewImg.src.endsWith("hqdefault.jpg")) previewImg.src = base + "hqdefault.jpg";
-    });
-  }
   if (modal) $$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => {
     if (!modal || modal.hidden) return;
