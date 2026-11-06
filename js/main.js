@@ -9,8 +9,8 @@
 const CONFIG = {
   instructorName: "Yogi",
   pricing: {
-    originalPrice: 1499,
-    offerPrice: 749,
+    originalPrice: 1999,
+    offerPrice: 999,
     offerActive: true,          // set to false after Diwali
     offerLabel: "Diwali Offer",
     offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
