@@ -16,7 +16,7 @@ const CONFIG = {
     offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
   },
   enrollLink: "[ENROLL LINK]",                // e.g. "https://pages.razorpay.com/your-course"
-  videoEmbedUrl: "[INTRO VIDEO EMBED URL]",   // e.g. "https://www.youtube.com/embed/VIDEO_ID"
+  introVideoId: "1wBa1sUbl30",   // YouTube video ID — the embed/thumbnail URLs are built from this
   contactEmail: "yogi.indexoption@gmail.com",
   telegramChannel: "https://t.me/trade_index_option",   // free public Telegram channel
   whatsappChannel: "https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s", // free public WhatsApp channel
@@ -24,6 +24,8 @@ const CONFIG = {
   instagram: "https://www.instagram.com/the.disciplined__trader/",   // Instagram profile
   youtube: "https://www.youtube.com/@csPoint"   // YouTube channel
 };
+// Built from the ID in one place (privacy-friendly youtube-nocookie.com domain)
+CONFIG.introVideoEmbed = CONFIG.introVideoId ? "https://www.youtube-nocookie.com/embed/" + CONFIG.introVideoId : "";
 
 (function () {
   "use strict";
@@ -221,7 +223,7 @@ const CONFIG = {
   function openModal() {
     lastFocus = document.activeElement;
     frame.innerHTML = "";
-    if (isPlaceholder(CONFIG.videoEmbedUrl)) {
+    if (isPlaceholder(CONFIG.introVideoEmbed)) {
       const msg = document.createElement("p");
       msg.className = "modal__msg";
       msg.textContent = "Intro video coming soon.";
@@ -229,13 +231,11 @@ const CONFIG = {
     } else {
       // iframe is created only now (lazy) and removed on close so playback stops
       const iframe = document.createElement("iframe");
-      const sep = CONFIG.videoEmbedUrl.includes("?") ? "&" : "?";
-      // privacy-enhanced mode: youtube-nocookie.com avoids setting cookies until playback
-      const embed = CONFIG.videoEmbedUrl.replace("://www.youtube.com/embed/", "://www.youtube-nocookie.com/embed/");
-      iframe.src = embed + sep + "autoplay=1&rel=0";
-      iframe.title = "Index Option intro video";
-      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen";
+      iframe.src = CONFIG.introVideoEmbed + "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
+      iframe.title = "Index Option — Course Intro Video";
+      iframe.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
       iframe.allowFullscreen = true;
+      iframe.referrerPolicy = "strict-origin-when-cross-origin";
       frame.appendChild(iframe);
     }
     modal.hidden = false;
@@ -250,6 +250,21 @@ const CONFIG = {
     if (lastFocus) lastFocus.focus();
   }
   if (openBtn && modal) openBtn.addEventListener("click", openModal);
+  const previewBtn = $("#video-preview");
+  if (previewBtn && modal) previewBtn.addEventListener("click", openModal);
+  // Thumbnail: fall back to hqdefault.jpg if maxresdefault.jpg doesn't exist
+  const previewImg = $("#video-preview-img");
+  if (previewImg && CONFIG.introVideoId) {
+    const base = "https://i.ytimg.com/vi/" + CONFIG.introVideoId + "/";
+    previewImg.addEventListener("error", function onErr() {
+      previewImg.removeEventListener("error", onErr);
+      previewImg.src = base + "hqdefault.jpg";
+    });
+    // maxresdefault returns a 120px placeholder (not an error) on some videos
+    previewImg.addEventListener("load", () => {
+      if (previewImg.naturalWidth && previewImg.naturalWidth <= 120 && !previewImg.src.endsWith("hqdefault.jpg")) previewImg.src = base + "hqdefault.jpg";
+    });
+  }
   if (modal) $$("[data-close-modal]", modal).forEach((el) => el.addEventListener("click", closeModal));
   document.addEventListener("keydown", (e) => {
     if (!modal || modal.hidden) return;

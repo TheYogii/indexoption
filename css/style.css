@@ -202,6 +202,12 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .about { display: grid; gap: var(--sp-6); align-items: center; }
 .about__text p { color: var(--text-muted); font-size: var(--fs-lg); }
 .about__text h2 { max-width: 16em; }
+.video-preview { position: relative; display: block; width: 100%; max-width: 640px; aspect-ratio: 16 / 9; margin-top: var(--sp-5); padding: 0; border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; background: #000; cursor: pointer; }
+.video-preview img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-preview::after { content: ""; position: absolute; inset: 0; background: rgba(4,6,11,.3); pointer-events: none; }
+.video-preview__play { position: absolute; z-index: 1; top: 50%; left: 50%; translate: -50% -50%; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 50%; background: var(--accent-strong); color: #fff; box-shadow: 0 6px 24px rgba(0,0,0,.4); transition: transform .2s var(--ease); }
+.video-preview__play .icon { width: 30px; height: 30px; margin-left: 3px; }
+@media (hover: hover) { .video-preview:hover .video-preview__play { transform: scale(1.1); } }
 .instructor { padding: var(--sp-5); text-align: center; max-width: 340px; margin-inline: auto; width: 100%; }
 .instructor__photo { width: 128px; height: 128px; margin: 0 auto var(--sp-4); border-radius: 50%; overflow: hidden; background: var(--surface-2); border: 2px solid rgba(22,199,132,.5); }
 .instructor__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
