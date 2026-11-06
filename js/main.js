@@ -9,8 +9,8 @@
 const CONFIG = {
   instructorName: "Yogi",
   pricing: {
-    originalPrice: 1199,
-    offerPrice: 599,
+    originalPrice: 1499,
+    offerPrice: 749,
     offerActive: true,          // set to false after Diwali
     offerLabel: "Diwali Offer",
     offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
@@ -80,17 +80,18 @@ const CONFIG = {
     const save = P.originalPrice - P.offerPrice;
     const percent = Math.round((save / P.originalPrice) * 100);
     const endText = end ? end.toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" }) : "";
-    const vals = { current: fmt(current), offer: fmt(P.offerPrice), original: fmt(P.originalPrice), save: fmt(save), percent: String(percent), label: P.offerLabel };
+    const vals = { current: fmt(current), offer: fmt(P.offerPrice), original: fmt(P.originalPrice), save: fmt(save), percent: String(percent), label: P.offerLabel, labelSentence: P.offerLabel.charAt(0) + P.offerLabel.slice(1).toLowerCase() };
 
     $$("[data-price]").forEach((el) => { el.textContent = vals[el.dataset.price] || ""; });
     $$("[data-offer-only]").forEach((el) => { el.hidden = !active; });
+    $$("[data-offer-off]").forEach((el) => { el.hidden = active; });
     const valid = $("#price-valid");
     if (valid) { valid.hidden = !(active && endText); valid.textContent = endText ? "Offer valid till " + endText : ""; }
 
     const faq = $("#faq-fee");
     if (faq) faq.textContent = active
-      ? "The course fee is " + fmt(P.originalPrice) + ". For " + P.offerLabel.replace(/\s*Offer$/i, "") + ", it's available at a special price of " + fmt(P.offerPrice) + " (" + percent + "% OFF)."
-      : "The course fee is " + fmt(P.originalPrice) + ".";
+      ? "The course fee is " + fmt(P.originalPrice) + ". For " + P.offerLabel.replace(/\s*Offer$/i, "") + ", it's available at " + fmt(P.offerPrice) + " (" + percent + "% OFF), which is less than what a single stop-loss hit on one Nifty lot usually costs."
+      : "The course fee is " + fmt(P.originalPrice) + ", which is less than what a single stop-loss hit on one Nifty lot usually costs.";
 
     // Announcement bar: dismissible, closed state remembered for the session
     const bar = $("#offer-bar");

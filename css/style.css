@@ -305,7 +305,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .price { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: .75rem; margin: var(--sp-4) 0 var(--sp-5); }
 .price__now { font-family: var(--font-head); font-size: clamp(2rem, 1.6rem + 2vw, 2.9rem); font-weight: 700; color: var(--accent); }
 .price__old { color: var(--text-muted); font-size: 1.2rem; }
-[data-offer-only][hidden], .offer-bar[hidden], .price-valid[hidden] { display: none !important; }
+[data-offer-only][hidden], [data-offer-off][hidden], .offer-bar[hidden], .price-valid[hidden] { display: none !important; }
 .price-badge { display: inline-block; margin: 0 0 var(--sp-3); padding: .35rem .9rem; border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: #F5B73B; background: rgba(245,183,59,.12); border: 1px solid rgba(245,183,59,.45); }
 .price-save { display: inline-block; margin: calc(-1 * var(--sp-3)) 0 var(--sp-3); padding: .25rem .8rem; border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--accent); background: var(--accent-soft); }
 .price-valid { margin: 0 0 var(--sp-4); font-size: var(--fs-sm); color: var(--text-muted); }
@@ -496,3 +496,13 @@ html.has-bar { --bar-h: 40px; }
 @media (max-width: 339px) { .logo__text { display: none; } }
 @media (max-width: 380px) {
 }
+
+/* value note: "less than one stop-loss" */
+.value-note { display: flex; align-items: flex-start; gap: .75rem; margin: 0 0 var(--sp-5); padding: .85rem 1rem; text-align: left; border-radius: 10px; background: rgba(22,199,132,.07); border: 1px solid rgba(22,199,132,.4); }
+.value-note .icon { flex: 0 0 auto; width: 20px; height: 20px; margin-top: .15rem; color: var(--accent); }
+.value-note p { margin: 0; font-size: 16px; line-height: 1.5; color: var(--text-muted); }
+.value-note strong { color: var(--text); font-weight: 600; }
+.cta-band .cta-band__value { margin: var(--sp-4) auto 0; font-size: var(--fs-sm); color: var(--text-muted); opacity: .85; }
+
+/* our approach */
+.approach__line { max-width: 640px; margin: var(--sp-6) auto 0; text-align: center; font-family: var(--font-head); font-weight: 500; font-size: var(--fs-lg); color: var(--accent); }
