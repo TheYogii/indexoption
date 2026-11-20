@@ -11,7 +11,7 @@ const CONFIG = {
   pricing: {
     originalPrice: 1999,
     offerPrice: 999,
-    offerActive: true,          // set to false after Diwali
+    offerActive: false,         // Diwali offer ended; set to true to bring it back
     offerLabel: "Diwali Offer",
     offerEndDate: ""            // optional, e.g. "2026-11-15". Leave empty to hide the end date
   },
@@ -21,6 +21,7 @@ const CONFIG = {
   telegramChannel: "https://t.me/trade_index_option",   // free public Telegram channel
   whatsappChannel: "https://whatsapp.com/channel/0029VaA5Sg5Fi8xhPflS9w2s", // free public WhatsApp channel
   telegramBot: "https://t.me/Index_Option_bot",          // public bot for questions (anyone, enrolled or not)
+  personalWebsite: "https://theyogi.pages.dev/",   // instructor's personal website
   instagram: "https://www.instagram.com/the.disciplined__trader/",   // Instagram profile
   youtube: "https://www.youtube.com/@csPoint"   // YouTube channel
 };
@@ -94,20 +95,6 @@ CONFIG.introVideoEmbed = CONFIG.introVideoId ? "https://www.youtube-nocookie.com
     if (faq) faq.textContent = active
       ? "The course fee is " + fmt(P.originalPrice) + ". For " + P.offerLabel.replace(/\s*Offer$/i, "") + ", it's available at " + fmt(P.offerPrice) + " (" + percent + "% OFF), which is less than what a single stop-loss hit on one Nifty lot usually costs."
       : "The course fee is " + fmt(P.originalPrice) + ", which is less than what a single stop-loss hit on one Nifty lot usually costs.";
-
-    // Announcement bar: dismissible, closed state remembered for the session
-    const bar = $("#offer-bar");
-    let closed = false;
-    try { closed = sessionStorage.getItem("offerBarClosed") === "1"; } catch (e) {}
-    const showBar = !!bar && active && !closed;
-    if (bar) bar.hidden = !showBar;
-    document.documentElement.classList.toggle("has-bar", showBar);
-    const close = $("#offer-close");
-    if (close) close.addEventListener("click", () => {
-      try { sessionStorage.setItem("offerBarClosed", "1"); } catch (e) {}
-      bar.hidden = true;
-      document.documentElement.classList.remove("has-bar");
-    });
 
     // Course structured data (SEO), built from the same CONFIG
     if ($("#pricing")) {

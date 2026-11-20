@@ -44,13 +44,12 @@
   --card-bg: rgba(255, 255, 255, 0.02);
   --card-border: rgba(255, 255, 255, 0.08);
   --nav-h: 72px;
-  --bar-h: 0px; /* becomes 40px while the offer bar is visible (html.has-bar) */
   --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* 2. BASE ------------------------------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + var(--bar-h) + 8px); -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 8px); -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -132,7 +131,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .btn--block { width: 100%; }
 
 /* 5. NAVBAR ---------------------------------------------------------------- */
-.navbar { position: fixed; inset: var(--bar-h) 0 auto 0; z-index: 100; height: var(--nav-h); }
+.navbar { position: fixed; inset: 0 0 auto 0; z-index: 100; height: var(--nav-h); }
 /* background + blur live on a pseudo-element so the logo is never inside the blurred/filtered layer */
 .navbar::before { content: ""; position: absolute; inset: 0; z-index: -1; background: transparent; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s; }
 .navbar.is-scrolled::before, .navbar.is-open::before { background: rgba(11,15,25,.85); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom-color: var(--card-border); }
@@ -161,7 +160,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* 6. HERO ------------------------------------------------------------------ */
-.hero { position: relative; padding: calc(var(--nav-h) + var(--bar-h) + var(--sp-6)) 0 var(--section-y); overflow: hidden; }
+.hero { position: relative; padding: calc(var(--nav-h) + var(--sp-6)) 0 var(--section-y); overflow: hidden; }
 .hero__glow { position: absolute; width: min(900px, 140vw); aspect-ratio: 1; top: -25%; left: 50%; transform: translateX(-50%); background: radial-gradient(circle, rgba(22,199,132,.12), transparent 62%); pointer-events: none; }
 .hero__grid { position: relative; display: grid; gap: var(--sp-7); align-items: center; }
 .hero__sub { font-size: var(--fs-lg); color: var(--text-muted); max-width: 40em; }
@@ -205,8 +204,10 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .instructor__bio { max-width: 320px; margin: 0 auto var(--sp-4); color: var(--text-muted); font-size: .95rem; }
 .instructor__bio strong { color: var(--text); font-weight: 600; }
 .instructor__btn { max-width: 100%; padding: 0 16px; font-size: .9rem; }
-.instructor__btn .icon { color: #229ED9; flex: 0 0 auto; }
-.instructor__disclaimer { max-width: 320px; margin: var(--sp-4) auto 0; font-size: 13px; line-height: 1.5; color: var(--text-muted); opacity: .85; }
+.instructor__btn .icon { color: var(--accent); flex: 0 0 auto; }
+.instructor__link { color: var(--accent); text-decoration: none; }
+.instructor__link:hover, .instructor__link:focus-visible { text-decoration: underline; text-underline-offset: 3px; }
+.instructor__disclaimer { max-width: 320px; margin: 0 auto var(--sp-4); font-size: 13px; line-height: 1.5; color: var(--text-muted); opacity: .85; }
 @media (min-width: 768px) { .instructor__photo { width: 156px; height: 156px; } }
 
 /* 8. CURRICULUM ------------------------------------------------------------ */
@@ -313,7 +314,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .price { display: flex; align-items: baseline; justify-content: center; flex-wrap: wrap; gap: .75rem; margin: var(--sp-4) 0 var(--sp-5); }
 .price__now { font-family: var(--font-head); font-size: clamp(2rem, 1.6rem + 2vw, 2.9rem); font-weight: 700; color: var(--accent); }
 .price__old { color: var(--text-muted); font-size: 1.2rem; }
-[data-offer-only][hidden], [data-offer-off][hidden], .offer-bar[hidden], .price-valid[hidden] { display: none !important; }
+[data-offer-only][hidden], [data-offer-off][hidden], .price-valid[hidden] { display: none !important; }
 .price-badge { display: inline-block; margin: 0 0 var(--sp-3); padding: .35rem .9rem; border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: #F5B73B; background: rgba(245,183,59,.12); border: 1px solid rgba(245,183,59,.45); }
 .price-save { display: inline-block; margin: calc(-1 * var(--sp-3)) 0 var(--sp-3); padding: .25rem .8rem; border-radius: 999px; font-size: var(--fs-sm); font-weight: 600; color: var(--accent); background: var(--accent-soft); }
 .price-valid { margin: 0 0 var(--sp-4); font-size: var(--fs-sm); color: var(--text-muted); }
@@ -327,16 +328,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .sticky-cta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 .sticky-cta__price { margin: 0; font-size: 1.1rem; color: var(--text-muted); }
 .sticky-cta__price b { color: var(--accent); font-family: var(--font-head); font-size: 1.35rem; margin-right: .35rem; }
-/* announcement bar */
-html.has-bar { --bar-h: 40px; }
-.offer-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 110; height: 40px; display: flex; align-items: center; justify-content: center; background: linear-gradient(90deg, #3A2A08, #4A3410 50%, #3A2A08); border-bottom: 1px solid rgba(245,183,59,.4); color: #FBE3A6; font-size: 14px; }
-.offer-bar__link { display: block; padding: 0 44px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: inherit; max-width: 100%; }
-.offer-bar__link b { color: #FFD470; }
-.offer-bar__link:hover { color: #FFFFFF; }
-.offer-bar__short { display: none; }
-.offer-bar__close { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; display: grid; place-items: center; background: none; border: 0; color: #FBE3A6; font-size: 24px; line-height: 1; cursor: pointer; }
-.offer-bar__close:hover { color: #FFFFFF; }
-@media (max-width: 640px) { .offer-bar { font-size: 13px; } .offer-bar__full { display: none; } .offer-bar__short { display: inline; } }
 .checklist--lg { text-align: left; margin-bottom: var(--sp-6); }
 .checklist--lg li { font-size: .95rem; }
 .price-card__note { margin: var(--sp-4) 0 0; font-size: var(--fs-sm); color: var(--text-muted); }
@@ -477,7 +468,7 @@ html.has-bar { --bar-h: 40px; }
   .nav-link { min-height: 44px; padding: 0 .9rem; border: 0; }
   .nav-link::after { content: ""; position: absolute; left: .9rem; right: .9rem; bottom: 6px; height: 2px; border-radius: 2px; background: var(--accent); transform: scaleX(0); transition: transform .25s var(--ease); }
   .nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); }
-  .hero { padding-top: calc(var(--nav-h) + var(--bar-h) + var(--sp-8)); padding-bottom: var(--sp-9); }
+  .hero { padding-top: calc(var(--nav-h) + var(--sp-8)); padding-bottom: var(--sp-9); }
   .footer__top { grid-template-columns: 1.5fr 1fr 1.3fr 1fr; gap: var(--sp-7); }
   .legal { display: grid; grid-template-columns: 240px minmax(0, 760px); gap: var(--sp-8); justify-content: center; align-items: start; }
   .legal__body { margin-inline: 0; }

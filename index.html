@@ -66,15 +66,6 @@
 <a class="skip-link" href="#main">Skip to content</a>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<!-- Offer bar: shown by JS only while CONFIG.pricing offer is active -->
-<div class="offer-bar" id="offer-bar" hidden>
-  <a class="offer-bar__link" href="#pricing" data-enroll>
-    <span class="offer-bar__full">🪔 <span data-price="label"></span>: Get the course at <b data-price="offer"></b> (<span data-price="percent"></span>% OFF) — Enroll Now →</span>
-    <span class="offer-bar__short">🪔 <span data-price="label"></span>: <b data-price="offer"></b> (<span data-price="percent"></span>% OFF) →</span>
-  </a>
-  <button type="button" class="offer-bar__close" id="offer-close" aria-label="Dismiss offer">×</button>
-</div>
-
 <!-- ===================== 1. NAVBAR ===================== -->
 <header class="navbar" id="navbar">
   <nav class="container navbar__inner" aria-label="Main navigation">
@@ -177,9 +168,9 @@
       </div>
       <p class="instructor__name" data-config-text="instructorName">Yogi</p>
       <p class="instructor__role">Index Options Trader &amp; Web Developer</p>
-      <p class="instructor__bio">I share my <strong>personal analysis and trades for free</strong> on my Telegram channel, so you can see how I read the market before you join.</p>
-      <a class="btn btn--ghost btn--sm instructor__btn" href="https://t.me/trade_index_option" data-config-link="telegramChannel" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true"><use href="#i-telegram"/></svg>Follow my free Telegram channel</a>
+      <p class="instructor__bio">I share my <strong>personal analysis and trades for free</strong> on my <a class="instructor__link" href="https://t.me/trade_index_option" data-config-link="telegramChannel" target="_blank" rel="noopener noreferrer">Telegram channel</a>, so you can see how I read the market before you join.</p>
       <p class="instructor__disclaimer">Shared for educational purposes only, not buy/sell recommendations.</p>
+      <a class="btn btn--ghost btn--sm instructor__btn" href="https://theyogi.pages.dev/" data-config-link="personalWebsite" target="_blank" rel="noopener noreferrer"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9S14.5 18.3 12 21c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3Z"/></svg>Visit my website</a>
     </aside>
   </div>
 </section>
